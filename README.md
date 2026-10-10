@@ -61,9 +61,8 @@ not survive the trip.
 
 ## Choosing how hard the model works
 
-`effort` (`low`, `medium` or `high`) is accepted on `translate`, `translateFile`,
-`translateImage` and `batch`, and passed through when you give it. Leave it out and nothing
-is sent. The answer says which level the call ran at:
+`effort` (`default`, `low`, `medium` or `high`) is accepted on `translate`, `translateFile`,
+`translateImage` and `batch`, and passed through when you give it. Leaving it out is the same as `default`: the level Translatorio recommends at the time (medium today), which moves as the models do. Name a level to keep it fixed. The answer says which level the call ran at:
 
 ```js
 const result = await tr.translate(text, 'es', { effort: 'low' })

@@ -11,7 +11,11 @@ export declare const VERSION: string
 export declare const SIGNATURE_HEADER: 'X-Translatorio-Signature'
 
 /** How hard the model works on a call. Accepted and passed through; see the README. */
-export type Effort = 'low' | 'medium' | 'high'
+/** What a call may ask for: a level, or `default` (the level Translatorio recommends at the time). */
+export type Effort = 'default' | 'low' | 'medium' | 'high'
+
+/** The level a call actually ran at, as the answer reports it. */
+export type EffortLevel = 'low' | 'medium' | 'high'
 
 export type Format = 'text' | 'html' | 'markdown'
 export type Formality = 'default' | 'formal' | 'informal'
@@ -99,7 +103,7 @@ export declare class Answer {
   readonly modelRead: boolean
   readonly modelName: string | null
   /** `usage.model.effort`: how hard the model was asked to work. */
-  readonly effort: Effort | null
+  readonly effort: EffortLevel | null
   readonly modelWhy: 'memory' | 'test_key' | (string & {}) | null
   readonly tokens: { input: number; output: number }
   readonly charged: number
