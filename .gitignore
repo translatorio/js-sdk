@@ -1,0 +1,5 @@
+/node_modules
+/package-lock.json
+
+# Notes for whoever works on the client, not part of the package.
+/CLAUDE.md

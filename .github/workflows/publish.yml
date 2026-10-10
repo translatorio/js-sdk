@@ -1,0 +1,60 @@
+name: Publish
+
+# A tag is the trigger, because a tag is what a release IS: the version in the manifest
+# and the point in history it was built from, agreeing. Publishing on every push to main
+# would make the registry's version numbers meaningless.
+on:
+  push:
+    tags: ['[0-9]*.[0-9]*.[0-9]*']
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      # What npm's trusted publishing authenticates with: GitHub vouches for this repository
+      # and this workflow, so no token is stored anywhere. It also signs the provenance, so
+      # the package page says "Built and signed on GitHub Actions" and links to the commit.
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      # The release tag IS the version. It is written into package.json and into the
+      # constant the User-Agent reads, here and only for this publish, so cutting a release
+      # is creating the tag and nothing else: no file to bump by hand, and no way for the
+      # tag and the manifest to disagree.
+      - name: Take the version from the tag
+        run: |
+          VERSION="$GITHUB_REF_NAME"
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Tag $VERSION is not a version like 1.2.3."
+            exit 1
+          fi
+          npm version "$VERSION" --no-git-tag-version --allow-same-version
+          sed -i "s/^export const VERSION = '.*'/export const VERSION = '$VERSION'/" index.js
+          grep -q "^export const VERSION = '$VERSION'" index.js
+
+      # Trusted publishing needs npm 11.5.1 or later, and the npm bundled with a Node
+      # release can be older than that.
+      - run: npm install -g npm@latest
+
+      - run: npm install
+
+      # Nothing is published that does not pass. A broken version cannot be replaced: npm
+      # versions are immutable, so the fix is always a new number.
+      - run: npm test
+      - run: npm run typecheck
+
+      # No token: the package trusts this repository and this workflow (npmjs.com, the
+      # package's Settings, Trusted Publisher). A token would also need the account's 2FA,
+      # which a workflow cannot answer. `access` is in publishConfig, and it matters: a
+      # scoped package is private by default and npm refuses it with a 402, which reads
+      # exactly like a billing problem and is not one.
+      - run: npm publish --provenance
