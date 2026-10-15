@@ -734,7 +734,7 @@ export class Translatorio {
     this.apiKey = apiKey
     this.baseUrl = (options.baseUrl ?? 'https://translatorio.com/api').replace(/\/+$/, '')
     this.retries = options.retries ?? 2
-    this.timeout = options.timeout ?? 10_000
+    this.timeout = options.timeout ?? 120_000
     // The longest this will ever sleep between attempts, whatever the service asks for.
     // Honouring `Retry-After` is the point; honouring it without a ceiling lets a number on
     // the wire decide how long your own request hangs.

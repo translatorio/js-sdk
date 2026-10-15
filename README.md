@@ -108,7 +108,7 @@ out.corrected            // strings answered with your own corrections
 
 A string is the file's text and goes up as JSON. Bytes (a `Uint8Array`, a `Buffer`, an
 `ArrayBuffer` or a `Blob`) go up as a `multipart/form-data` upload, byte for byte, so a
-UTF-16 `.strings` file arrives exactly as it left. A `File` keeps its own name unless you
+UTF-16 `.strings` file arrives exactly as it left (it comes back translated as UTF-8). A `File` keeps its own name unless you
 pass `filename`. `format` is optional when the filename's extension says it.
 
 ## Images
@@ -270,12 +270,12 @@ Pass your own as `idempotencyKey` when you retry at a level above this client.
 
 **Nothing that is not an answer is read as one.** Only a `2xx` carrying a JSON object is a
 success. A redirect (it is never followed), a proxy's HTML page, an empty body or a body cut
-off halfway throws a retryable `ServerError`. The timeout (10 seconds by default) covers the
+off halfway throws a retryable `ServerError`. The timeout (120 seconds by default) covers the
 body as well as the headers.
 
 ```js
 const tr = new Client(key, {
-  timeout: 10_000,   // ms, the request and its body together
+  timeout: 120_000,  // ms, the request and its body together
   retries: 2,
   maxWait: 30_000,   // the longest a single wait can be, in ms
   baseUrl: 'https://translatorio.com/api',
