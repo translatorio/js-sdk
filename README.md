@@ -1,7 +1,5 @@
 ![Translatorio JavaScript SDK](https://raw.githubusercontent.com/translatorio/js-sdk/main/art/banner.png)
 
-<!-- The banner is still to be generated: art/banner.png does not exist yet. -->
-
 # Translatorio JavaScript SDK
 
 [![npm version](https://img.shields.io/npm/v/translatorio-sdk.svg)](https://www.npmjs.com/package/translatorio-sdk) [![license](https://img.shields.io/npm/l/translatorio-sdk.svg)](https://github.com/translatorio/js-sdk/blob/main/LICENSE)
