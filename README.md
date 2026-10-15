@@ -2,7 +2,13 @@
 
 # Translatorio JavaScript SDK
 
-[![tests](https://github.com/translatorio/js-sdk/actions/workflows/tests.yml/badge.svg)](https://github.com/translatorio/js-sdk/actions/workflows/tests.yml) [![npm version](https://img.shields.io/npm/v/translatorio-sdk.svg)](https://www.npmjs.com/package/translatorio-sdk) [![npm downloads](https://img.shields.io/npm/dm/translatorio-sdk.svg)](https://www.npmjs.com/package/translatorio-sdk) [![license](https://img.shields.io/npm/l/translatorio-sdk.svg)](https://github.com/translatorio/js-sdk/blob/main/LICENSE) [![bundle size](https://img.shields.io/bundlephobia/minzip/translatorio-sdk)](https://bundlephobia.com/package/translatorio-sdk)
+<p align="center">
+    <a href="https://github.com/translatorio/js-sdk/actions/workflows/tests.yml"><img src="https://github.com/translatorio/js-sdk/actions/workflows/tests.yml/badge.svg" alt="tests"></a>
+    <a href="https://www.npmjs.com/package/translatorio-sdk"><img src="https://img.shields.io/npm/v/translatorio-sdk.svg" alt="npm version"></a>
+    <a href="https://www.npmjs.com/package/translatorio-sdk"><img src="https://img.shields.io/npm/dm/translatorio-sdk.svg" alt="npm downloads"></a>
+    <a href="https://github.com/translatorio/js-sdk/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/translatorio-sdk.svg" alt="license"></a>
+    <a href="https://bundlephobia.com/package/translatorio-sdk"><img src="https://img.shields.io/bundlephobia/minzip/translatorio-sdk" alt="bundle size"></a>
+</p>
 
 The official JavaScript client for [Translatorio](https://translatorio.com), the AI translation API.
 
