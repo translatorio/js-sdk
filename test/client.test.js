@@ -32,7 +32,7 @@ const USAGE = {
     cached: 0,
     corrected: 0,
     anonymized: 1,
-    model: { read: true, effort: 'medium', name: 'gpt-5.6-luna', why: null },
+    model: { read: true, effort: 'medium', why: null },
     tokens: { input: 420, output: 12 },
   },
   credits: { charged: 3, remaining: 1997 },
@@ -120,7 +120,6 @@ test('it reads a translation', async () => {
   assert.equal(result.charged, 3)
   assert.equal(result.creditsRemaining, 1997)
   assert.equal(result.modelRead, true)
-  assert.equal(result.modelName, 'gpt-5.6-luna')
   assert.equal(result.modelWhy, null)
   assert.equal(result.effort, 'medium')
   assert.deepEqual(result.tokens, { input: 420, output: 12 })

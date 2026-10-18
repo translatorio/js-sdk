@@ -77,7 +77,6 @@ export interface ModelUsage {
   read: boolean
   /** How hard the model was asked to work. */
   effort?: Effort
-  name: string | null
   /** `memory` or `test_key` when it did not read; null when it did. */
   why: 'memory' | 'test_key' | (string & {}) | null
 }
@@ -101,7 +100,6 @@ export declare class Answer {
   readonly usage: Usage
   readonly characters: number
   readonly modelRead: boolean
-  readonly modelName: string | null
   /** `usage.model.effort`: how hard the model was asked to work. */
   readonly effort: EffortLevel | null
   readonly modelWhy: 'memory' | 'test_key' | (string & {}) | null
@@ -281,7 +279,6 @@ export interface TranslationRecord {
   segments: number
   cached: number
   anonymized: number
-  model: string | null
   credits: number
   took_ms: number | null
   created_at: string | null

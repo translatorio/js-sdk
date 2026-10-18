@@ -215,11 +215,6 @@ export class Answer {
     return this.usage.model?.read === true
   }
 
-  /** @returns {?string} The model that read it, when one did. */
-  get modelName() {
-    return typeof this.usage.model?.name === 'string' ? this.usage.model.name : null
-  }
-
   /** @returns {?string} How hard the model was asked to work: `low`, `medium` or `high`. */
   get effort() {
     return typeof this.usage.model?.effort === 'string' ? this.usage.model.effort : null
